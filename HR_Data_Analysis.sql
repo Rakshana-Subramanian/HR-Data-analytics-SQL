@@ -58,3 +58,27 @@ select department,round(avg(emp_age),2) as Average_age from HR_employees group b
 
 --Question 18 department with highest attrition
 select department,count(attrition) from HR_employees where attrition = 'Yes' group by department order by count(attrition) desc fetch first 1 row only;
+
+-- Creating department table for join practice
+create table department_info(dept_id number primary key,dept_name varchar2(30), dept_loaction varchar2(20));
+
+-- Inserting data
+Insert into department_info(dept_id,dept_name,dept_loaction) values(1,'Sales','Chennai');
+Insert into department_info(dept_id,dept_name,dept_loaction) values(2,'Research&development','Bangalore');
+
+set define off; -- This tells oracle to ignore symbol
+update department_info set dept_name= 'Research & Development' where dept_id=2;
+commit;
+Insert into department_info(dept_id,dept_name,dept_loaction) values(3,'Human Resources','Mumbai');
+Insert into department_info(dept_id,dept_name,dept_loaction) values(4,'Finance','Delhi');
+
+-- Question 19 - employees with department location
+select e.employeenumber,e.department,d.dept_loaction from HR_employees e inner join department_info d on e.department=d.dept_name order by department asc;
+ 
+-- Question 20 - Show all departments including those with no employees
+select e.employeenumber,e.department,d.dept_loaction from HR_employees e left join department_info d on e.department=d.dept_name;
+
+-- creating a view
+create view High_salary_employees as select employeenumber,department,MonthlyIncome from HR_employees where Monthlyincome>10000;
+
+select * from High_salary_employees;
