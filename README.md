@@ -23,3 +23,4 @@ Oracle SQL Developer
 - aggregate functions
 - filtering wth wher and having
 - Joins
+- views
