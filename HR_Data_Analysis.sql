@@ -38,25 +38,25 @@ select employeenumber, MonthlyIncome, Case when MonthlyIncome>15000 then 'High' 
 -- Question 11 - Employees who earn more than average salary of the company
 select EmployeeNumber,MonthlyIncome from HR_employees where MonthlyIncome>(select avg(MonthlyIncome) from HR_employees);
 
--- Question 12 Find Attrition rate by department - How many left vs total in each department
+-- Question 12 - Find Attrition rate by department - How many left vs total in each department
 select department,count(Attrition) as Total from HR_employees where Attrition = 'Yes' group by department;
 
--- Question 13 Rank employees by salary
+-- Question 13 - Rank employees by salary
 select EmployeeNumber,department,MonthlyIncome,Rank() over(partition by department order by MonthlyIncome desc) as Rank from HR_Employees;
 
--- Question 14 Find years at company for each employee
+-- Question 14 - Find years at company for each employee
 select EmployeeNumber,Nvl(Yearsatcompany,0) as Total_years from HR_employees;
 
---Question 15 Show department, Total employees, average salary, total attrition together in one query
+-- Question 15 - Show department, Total employees, average salary, total attrition together in one query
 select department,count(employeeNumber) as Total_employees ,round(avg(MonthlyIncome),2) as Average_salary,sum(case when Attrition ='Yes' then 1 else 0 end) as Total_attrition from HR_employees group by department;
 
---Question 16 show gender wise employee count
+-- Question 16 - Show gender wise employee count
 select gender,count(employeenumber) from HR_employees group by gender;
 
---Question 17 average age by department
+--Question 17 - Average age by department
 select department,round(avg(emp_age),2) as Average_age from HR_employees group by department;
 
---Question 18 department with highest attrition
+--Question 18 - Department with highest attrition
 select department,count(attrition) from HR_employees where attrition = 'Yes' group by department order by count(attrition) desc fetch first 1 row only;
 
 -- Creating department table for join practice
@@ -69,6 +69,7 @@ Insert into department_info(dept_id,dept_name,dept_loaction) values(2,'Research&
 set define off; -- This tells oracle to ignore symbol
 update department_info set dept_name= 'Research & Development' where dept_id=2;
 commit;
+
 Insert into department_info(dept_id,dept_name,dept_loaction) values(3,'Human Resources','Mumbai');
 Insert into department_info(dept_id,dept_name,dept_loaction) values(4,'Finance','Delhi');
 
