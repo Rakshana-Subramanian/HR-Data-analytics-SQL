@@ -1,7 +1,7 @@
 # HR-Data-analytics-SQL
 # Project overview
 Analysis of HR employee data using oracle SQL Queries
-performed 18 queries to find insights on attrition
+performed 20 queries to find insights on attrition
 
 # Dataset
 Source: IBM HR Analytics dataset from Kaggle
